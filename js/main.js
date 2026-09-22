@@ -9,10 +9,17 @@ const RoyalApp = {
 
   init() {
     // Initialize all modules
+    if (window.FlowerShower) {
+      FlowerShower.init();
+      FlowerShower.start(1.5);
+    }
     RoyalCountdown.init();
     RoyalDecree.init();
     RoyalGallery.init();
     GiftReveal.init();
+    if (window.RoyalWishes) {
+      RoyalWishes.init();
+    }
 
     // Bind navigation
     this.bindNavigation();

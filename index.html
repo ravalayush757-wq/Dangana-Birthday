@@ -100,6 +100,237 @@
       <button class="royal-btn" data-page="decree">
         ⚜ Enter the Palace ⚜
       </button>
+
+      <!-- Scroll Indicator & Downward Invitation -->
+      <div class="landing-scroll-prompt">
+        <span>✦ Scroll down to pen thy royal wishes & explore thy tribute ✦</span>
+        <div class="scroll-arrow-down">⌄</div>
+      </div>
+
+      <div class="royal-divider">
+        <span class="ornament">⚜</span>
+      </div>
+
+      <!-- ==========================================
+           SPECIAL SECTION 1: HER ROYAL BIRTHDAY WISH SCROLL
+           ========================================== -->
+      <div class="royal-wish-section" id="royal-wish-section">
+        
+        <!-- Form View -->
+        <div class="royal-card wish-card-wrapper" id="royal-wish-form-wrapper">
+          <div class="card-crown">👑</div>
+          <h2 class="card-royal-title">Her Majesty's Birthday Wish & Royal Decree</h2>
+          <p class="card-royal-subtitle">
+            Speak thy heart's deepest desires unto the universe, Princess <span class="royal-name-script">D. Angana</span> — 
+            every wish sealed here shall be honored and preserved for all eternity.
+          </p>
+          
+          <div class="royal-divider small">
+            <span class="ornament">❦</span>
+          </div>
+
+          <form id="royal-wish-form" class="royal-form">
+            <!-- Wish Input -->
+            <div class="form-group">
+              <label for="her-royal-wish" class="royal-label">
+                ✨ Her Majesty's Secret Birthday Wish for This Year
+              </label>
+              <textarea id="her-royal-wish" class="royal-textarea" rows="3" required
+                placeholder="Whisper thy secret wish for this year... (joy, peace, dreams, accomplishments, or anything thy heart craves)"></textarea>
+            </div>
+
+            <!-- Command for Ayush -->
+            <div class="form-group">
+              <label for="her-royal-command" class="royal-label">
+                💌 A Royal Command or Promise Decreed for Ayush
+              </label>
+              <textarea id="her-royal-command" class="royal-textarea" rows="2"
+                placeholder="What dost thou command Ayush to do, promise, or fulfill for thee? (e.g. 'Never stop pampering me', 'Take me on a midnight trip to...')"></textarea>
+            </div>
+
+            <!-- Dream Celebration Selector -->
+            <div class="form-group">
+              <label class="royal-label">
+                🎉 Thy Chosen Royal Birthday Celebration
+              </label>
+              <div class="pills-grid">
+                <button type="button" class="celeb-pill selected" data-celeb="A Candlelight Royal Feast 🕯️">🕯️ Candlelight Royal Feast</button>
+                <button type="button" class="celeb-pill" data-celeb="Stargazing & Midnight Conversations 🌌">🌌 Stargazing & Sweet Talks</button>
+                <button type="button" class="celeb-pill" data-celeb="A Surprise Royal Getaway ✈️">✈️ A Surprise Getaway</button>
+                <button type="button" class="celeb-pill" data-celeb="Gourmet Cakes & Lavish Pampering 🍰">🍰 Cakes & Lavish Pampering</button>
+                <button type="button" class="celeb-pill" data-celeb="Endless Hugs & Quiet Togetherness 💖">💖 Endless Hugs & Warmth</button>
+              </div>
+              <input type="hidden" id="selected-royal-celeb" value="A Candlelight Royal Feast 🕯️">
+            </div>
+
+            <!-- Mood Selector -->
+            <div class="form-group">
+              <label class="royal-label">
+                👸 Her Majesty's Imperial Mood Today
+              </label>
+              <div class="mood-pills-row">
+                <button type="button" class="mood-pill selected" data-mood="Majestic & Blessed 👑">👑 Majestic</button>
+                <button type="button" class="mood-pill" data-mood="Deeply Loved & Cherished 💖">💖 Cherished</button>
+                <button type="button" class="mood-pill" data-mood="Radiant & Smiling 🌸">🌸 Radiant</button>
+                <button type="button" class="mood-pill" data-mood="Eager & Excited ✨">✨ Excited</button>
+              </div>
+              <input type="hidden" id="selected-royal-mood" value="Majestic & Blessed 👑">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-submit-row">
+              <button type="submit" class="royal-btn royal-btn-gold">
+                ⚜ Seal & Inscribe My Royal Wish with Gold ⚜
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Certificate View (Shown after submitting or if already saved) -->
+        <div class="royal-card wish-certificate-card" id="royal-wish-certificate" style="display: none;">
+          <div class="cert-ribbon">⚜ ROYAL DECREE OF WISHES ⚜</div>
+          <div class="cert-crown">👑</div>
+          <h2 class="cert-title">By Royal Order of Princess <span class="royal-name-script">D. Angana</span></h2>
+          <p class="cert-proclamation">
+            Be it recorded in the archives of Heaven and upon the steadfast heart of Ayush:
+          </p>
+
+          <div class="cert-divider">✦ ✦ ✦</div>
+
+          <div class="cert-item">
+            <span class="cert-label">Her Majesty's Inscribed Wish:</span>
+            <p class="cert-quote" id="cert-wish-text">""</p>
+          </div>
+
+          <div class="cert-item">
+            <span class="cert-label">Her Royal Command Unto Ayush:</span>
+            <p class="cert-command" id="cert-command-text">""</p>
+          </div>
+
+          <div class="cert-meta-grid">
+            <div class="cert-meta-box">
+              <span class="meta-icon">🎁</span>
+              <span class="meta-label">Chosen Celebration</span>
+              <span class="meta-val" id="cert-celeb-text"></span>
+            </div>
+            <div class="cert-meta-box">
+              <span class="meta-icon">💖</span>
+              <span class="meta-label">Royal Mood</span>
+              <span class="meta-val" id="cert-mood-text"></span>
+            </div>
+          </div>
+
+          <div class="cert-date" id="cert-date-text"></div>
+
+          <div class="cert-seal-img-wrapper">
+            <img src="assets/wax-seal.jpg" alt="Sealed by Royal Decree" class="cert-wax-seal">
+            <p class="cert-seal-note">Sealed with Everlasting Devotion</p>
+          </div>
+
+          <!-- Actions -->
+          <div class="cert-actions">
+            <a id="cert-whatsapp-btn" href="#" class="royal-btn whatsapp-share-btn">
+              💬 Share Royal Decree with Ayush
+            </a>
+            <button id="cert-edit-btn" class="royal-btn-ghost">
+              ✍ Inscribe Another Wish
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="royal-divider">
+        <span class="ornament">⚜</span>
+      </div>
+
+      <!-- ==========================================
+           SPECIAL SECTION 2: CELESTIAL QUOTES FOR HER
+           ========================================== -->
+      <div class="royal-quotes-section">
+        <h2 class="section-title">Celestial Words for Her Highness</h2>
+        <p class="section-subtitle">"Whispers of Love & Honour Dedicated to the Sovereign Queen of My Heart"</p>
+
+        <div class="royal-quote-box" id="royal-quote-card">
+          <div class="quote-mark-top">❝</div>
+          <p class="quote-display-text" id="royal-quote-text">
+            "Among the countless billions who walk this earth, there is only one smile that turns my world to pure gold..."
+          </p>
+          <div class="quote-mark-bottom">❞</div>
+          <p class="quote-sub-dedication" id="royal-quote-sub">✦ Dedicated from the Faithful Heart of Ayush ✦</p>
+        </div>
+
+        <div class="quote-controls">
+          <button class="royal-btn royal-btn-compact" id="royal-quote-next">
+            ✨ Reveal Another Celestial Whisper ✨
+          </button>
+          <div class="quote-dots" id="quote-dots-container"></div>
+        </div>
+      </div>
+
+      <div class="royal-divider">
+        <span class="ornament">⚜</span>
+      </div>
+
+      <!-- ==========================================
+           SPECIAL SECTION 3: THE FOUR PILLARS OF HER GRACE
+           ========================================== -->
+      <div class="royal-pillars-section">
+        <h2 class="section-title">The Four Pillars of Her Sovereignty</h2>
+        <p class="section-subtitle">"The Sacred Virtues That Make Her Majesty Incomparable Across All Realms"</p>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">🩺</div>
+            <h3 class="pillar-title">The Healing Soul</h3>
+            <p class="pillar-desc">
+              Her Grace Dr. Angana — endowed with wisdom, intellect, and profound empathy. She heals not only with her science, but with the gentle warmth of her soul.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">👑</div>
+            <h3 class="pillar-title">The Sovereign Queen</h3>
+            <p class="pillar-desc">
+              Ruling my heart with unmatched poise and effortless dignity. No crown of gems could ever shine brighter than her natural nobility.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">🌸</div>
+            <h3 class="pillar-title">The Radiant Spirit</h3>
+            <p class="pillar-desc">
+              Her laughter is the realm's sweetest melody; her presence dispels all shadows and turns ordinary moments into celestial blessings.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon">⚜</div>
+            <h3 class="pillar-title">The Nov 14 Miracle</h3>
+            <p class="pillar-desc">
+              The day Providence smiled upon the world and bestowed upon it its greatest treasure — the one whose existence is my life's greatest honour.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="royal-divider">
+        <span class="ornament">⚜</span>
+      </div>
+
+      <!-- ==========================================
+           SPECIAL SECTION 4: THE PALACE GATES CALL
+           ========================================== -->
+      <div class="palace-gateway-card">
+        <div class="gateway-icon">🏰</div>
+        <h2 class="gateway-title">The Royal Decree Awaits Thy Presence</h2>
+        <p class="gateway-desc">
+          "Step forward into the Palace halls, dear one. An everlasting decree of devotion, sealed with wax and written from the soul, hath been proclaimed for thee."
+        </p>
+        <button class="royal-btn royal-btn-large" data-page="decree">
+          ⚜ Proceed to The Royal Decree ⚜
+        </button>
+      </div>
     </div>
   </section>
 
@@ -556,10 +787,12 @@
   <!-- ==========================================
        SCRIPTS
        ========================================== -->
+  <script src="js/flowers.js"></script>
   <script src="js/gifts.js"></script>
   <script src="js/countdown.js"></script>
   <script src="js/decree.js"></script>
   <script src="js/gallery.js"></script>
+  <script src="js/wishes.js"></script>
   <script src="js/main.js"></script>
 
 </body>
