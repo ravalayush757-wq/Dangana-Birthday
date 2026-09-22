@@ -122,19 +122,20 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 10px 24px;
+  padding: 8px 20px 6px;
+  gap: 4px;
   position: relative;
 }
 
 .nav-brand {
   position: relative;
-  left: auto;
-  flex-shrink: 0;
-  display: flex;
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
+  margin: 0 auto;
   font-family: var(--font-royal);
   font-size: 1.05rem;
   color: var(--gold);
@@ -152,7 +153,7 @@ body {
 }
 
 .nav-brand .royal-name-script {
-  font-size: 1.55rem;
+  font-size: 1.6rem;
   letter-spacing: 2px;
   color: var(--gold-light);
   text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
@@ -160,10 +161,13 @@ body {
 
 .nav-links {
   display: flex;
-  list-style: none;
-  gap: 4px;
+  justify-content: center;
   align-items: center;
+  list-style: none;
+  gap: 6px;
   flex-wrap: nowrap;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .nav-links li a {
@@ -173,7 +177,7 @@ body {
   text-decoration: none;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 7px 11px;
+  padding: 5px 11px;
   position: relative;
   transition: var(--transition-smooth);
   cursor: pointer;
@@ -294,14 +298,16 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Royal Name in Script Font (Same as signature font) */
+/* Royal Name in Script Font (Same as header font) */
 .royal-name-script {
   font-family: var(--font-script) !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
   font-size: 1.4em;
-  font-weight: normal;
   color: var(--gold-light);
   text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-  letter-spacing: 1px;
   display: inline-block;
   vertical-align: baseline;
   line-height: 1;
@@ -481,6 +487,19 @@ body {
   text-transform: uppercase;
   margin-bottom: 25px;
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.countdown-label .royal-name-script {
+  font-family: var(--font-script) !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
+  font-size: 1.7em !important;
+  color: var(--gold-light) !important;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6) !important;
+  padding: 0 4px;
+  display: inline-block;
+  vertical-align: baseline;
 }
 
 .countdown-boxes {
@@ -2408,11 +2427,23 @@ body {
   }
 
   .nav-brand {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .nav-container {
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .nav-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
@@ -2424,6 +2455,10 @@ body {
   /* Navigation */
   .nav-toggle {
     display: flex;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   
   .nav-links {
@@ -2450,16 +2485,22 @@ body {
     padding: 15px 10px;
     font-size: 0.85rem;
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    text-align: center;
   }
 
   .nav-brand {
     position: relative;
-    left: 0;
-    font-size: 0.9rem;
+    left: auto;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.95rem;
   }
 
   .nav-container {
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
   }
 
   /* Landing */
