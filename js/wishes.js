@@ -38,7 +38,7 @@ const RoyalWishes = {
   init() {
     this.initWishForm();
     this.initQuotes();
-    this.renderSavedWishIfExists();
+    this.checkPreviousWishNotice();
   },
 
   /**
@@ -232,6 +232,18 @@ const RoyalWishes = {
     // Render the sealed decree certificate
     this.displaySealedCertificate(wishData);
 
+    // Ensure banner will be available if they return to form
+    const banner = document.getElementById('previous-decree-banner');
+    if (banner) {
+      banner.style.display = 'block';
+      const viewBtn = document.getElementById('view-previous-decree-btn');
+      if (viewBtn) {
+        viewBtn.onclick = () => {
+          this.displaySealedCertificate(wishData, true);
+        };
+      }
+    }
+
     // Open WhatsApp directly to Ayush (+91 9065405089)
     const waUrl = this.buildWhatsAppUrl(wishData);
     try {
@@ -265,19 +277,32 @@ ${data.mood}
   },
 
   /**
-   * Check if a wish was previously saved and display it
+   * Check if a wish was previously saved and show a discreet toggle button,
+   * while ALWAYS keeping the fresh wish form OPEN by default.
    */
-  renderSavedWishIfExists() {
+  checkPreviousWishNotice() {
+    const formCard = document.getElementById('royal-wish-form-wrapper');
+    const certCard = document.getElementById('royal-wish-certificate');
+    if (formCard) formCard.style.display = 'block';
+    if (certCard) certCard.style.display = 'none';
+
     try {
       const saved = localStorage.getItem(this.storageKey);
-      if (saved) {
+      const banner = document.getElementById('previous-decree-banner');
+      if (saved && banner) {
         const data = JSON.parse(saved);
         if (data && data.wish) {
-          this.displaySealedCertificate(data, false);
+          banner.style.display = 'block';
+          const viewBtn = document.getElementById('view-previous-decree-btn');
+          if (viewBtn) {
+            viewBtn.onclick = () => {
+              this.displaySealedCertificate(data, true);
+            };
+          }
         }
       }
     } catch (e) {
-      console.warn("Could not read saved wish", e);
+      console.warn("Could not check saved wish", e);
     }
   },
 
@@ -311,14 +336,26 @@ ${data.mood}
       waBtn.target = '_blank';
     }
 
-    // Edit button
+    // Edit / Inscribe Another button
     const editBtn = document.getElementById('cert-edit-btn');
     if (editBtn) {
       editBtn.onclick = () => {
         certCard.style.display = 'none';
         formCard.style.display = 'block';
+        const banner = document.getElementById('previous-decree-banner');
+        if (banner) banner.style.display = 'block';
         const wishInput = document.getElementById('her-royal-wish');
-        if (wishInput) wishInput.focus();
+        if (wishInput) {
+          wishInput.value = '';
+          wishInput.focus();
+        }
+        const commandInput = document.getElementById('her-royal-command');
+        if (commandInput) {
+          commandInput.value = '';
+        }
+        setTimeout(() => {
+          formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
       };
     }
 
