@@ -151,6 +151,13 @@ body {
   color: var(--gold-light);
 }
 
+.nav-brand .royal-name-script {
+  font-size: 1.55rem;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -766,6 +773,12 @@ body {
   border-radius: 25px;
   cursor: pointer;
   transition: var(--transition-smooth);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.celeb-pill *, .mood-pill * {
+  pointer-events: none;
 }
 
 .celeb-pill:hover, .mood-pill:hover {
@@ -809,6 +822,16 @@ body {
   background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #FFEC8B 100%) !important;
   box-shadow: 0 0 35px rgba(212, 175, 55, 0.8) !important;
   transform: translateY(-3px) !important;
+}
+
+.form-delivery-note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold-light);
+  margin-top: 12px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
 }
 
 /* Certificate View */
@@ -2180,6 +2203,30 @@ body {
   color: var(--gold-muted);
   margin-top: 15px;
   opacity: 0.7;
+}
+
+.blessing-whatsapp-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #25D366;
+  background: rgba(18, 140, 126, 0.15);
+  border: 1.5px solid #25D366;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+}
+
+.blessing-whatsapp-link:hover {
+  background: linear-gradient(135deg, #128C7E, #25D366);
+  color: #FFFFFF;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+  transform: translateY(-2px);
 }
 
 /* Fireworks Canvas */

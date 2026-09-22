@@ -8,7 +8,7 @@ const RoyalWishes = {
   quotes: [
     {
       quote: "Among the countless billions who walk this earth, there is only one smile that turns my world to pure gold, only one voice that calms my every storm — Her Peerless Majesty, Dr. Angana.",
-      sub: "Dedicated from the Faithful Heart of Ayush"
+      sub: "Dedicated from the Faithful Heart of Manu"
     },
     {
       quote: "Thou art not merely a chapter in my mortal story; thou art the melody that gives rhythm to my days and the sacred prayer that grants peace to my nights.",
@@ -101,34 +101,72 @@ const RoyalWishes = {
   },
 
   /**
+   * Selection handlers for Celebration and Mood pills
+   */
+  selectCeleb(btn) {
+    if (!btn) return;
+    const container = document.getElementById('celeb-pills-container') || btn.closest('.pills-grid') || document;
+    container.querySelectorAll('.celeb-pill').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const input = document.getElementById('selected-royal-celeb');
+    const val = btn.getAttribute('data-celeb') || btn.textContent.trim();
+    if (input) input.value = val;
+  },
+
+  selectMood(btn) {
+    if (!btn) return;
+    const container = document.getElementById('mood-pills-container') || btn.closest('.mood-pills-row') || document;
+    container.querySelectorAll('.mood-pill').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const input = document.getElementById('selected-royal-mood');
+    const val = btn.getAttribute('data-mood') || btn.textContent.trim();
+    if (input) input.value = val;
+  },
+
+  /**
    * Initialize Wish Form & interactive buttons
    */
   initWishForm() {
     const form = document.getElementById('royal-wish-form');
     if (!form) return;
 
-    // Mood selection pills
-    const moodBtns = document.querySelectorAll('.mood-pill');
-    moodBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        moodBtns.forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        const input = document.getElementById('selected-royal-mood');
-        if (input) input.value = btn.getAttribute('data-mood');
+    // Celebration event delegation
+    const celebContainer = document.getElementById('celeb-pills-container') || document.querySelector('.pills-grid');
+    if (celebContainer) {
+      celebContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.celeb-pill');
+        if (btn) {
+          e.preventDefault();
+          this.selectCeleb(btn);
+        }
       });
+    }
+
+    // Mood event delegation
+    const moodContainer = document.getElementById('mood-pills-container') || document.querySelector('.mood-pills-row');
+    if (moodContainer) {
+      moodContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.mood-pill');
+        if (btn) {
+          e.preventDefault();
+          this.selectMood(btn);
+        }
+      });
+    }
+
+    // Direct click backup on each pill
+    document.querySelectorAll('.celeb-pill').forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        this.selectCeleb(btn);
+      };
     });
 
-    // Celebration choice pills
-    const celebBtns = document.querySelectorAll('.celeb-pill');
-    celebBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    document.querySelectorAll('.mood-pill').forEach(btn => {
+      btn.onclick = (e) => {
         e.preventDefault();
-        celebBtns.forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        const input = document.getElementById('selected-royal-celeb');
-        if (input) input.value = btn.getAttribute('data-celeb');
-      });
+        this.selectMood(btn);
+      };
     });
 
     // Form submit
@@ -137,6 +175,8 @@ const RoyalWishes = {
       this.handleWishSubmit();
     });
   },
+
+  ayushPhone: '919065405089',
 
   handleWishSubmit() {
     const wishInput = document.getElementById('her-royal-wish');
@@ -191,6 +231,37 @@ const RoyalWishes = {
 
     // Render the sealed decree certificate
     this.displaySealedCertificate(wishData);
+
+    // Open WhatsApp directly to Ayush (+91 9065405089)
+    const waUrl = this.buildWhatsAppUrl(wishData);
+    try {
+      window.open(waUrl, '_blank');
+    } catch (e) {
+      console.log("Auto-open blocked, user can tap the WhatsApp button", e);
+    }
+  },
+
+  buildWhatsAppUrl(data) {
+    const waMessage = 
+`👑 *ROYAL BIRTHDAY DECREE FROM HER HIGHNESS DR. ANGANA* 👑
+⚜ Proclaimed unto the Stars & Sealed for Manu ⚜
+
+✨ *Her Majesty's Secret Birthday Wish:*
+"${data.wish}"
+
+💌 *Her Royal Command for Manu:*
+"${data.command}"
+
+🎉 *Her Dream Birthday Celebration:*
+${data.celebration}
+
+💖 *Her Royal Mood:*
+${data.mood}
+
+📅 *Inscribed:* ${data.date} at ${data.time}
+✦ Forever Sealed in Manu's Heart ✦`;
+
+    return `https://api.whatsapp.com/send?phone=${this.ayushPhone}&text=${encodeURIComponent(waMessage)}`;
   },
 
   /**
@@ -233,29 +304,10 @@ const RoyalWishes = {
     if (certMood) certMood.textContent = data.mood;
     if (certDate) certDate.textContent = `Inscribed upon ${data.date} at ${data.time}`;
 
-    // WhatsApp share link
+    // WhatsApp share link with phone number
     const waBtn = document.getElementById('cert-whatsapp-btn');
     if (waBtn) {
-      const waMessage = 
-`👑 *ROYAL BIRTHDAY DECREE FROM HER HIGHNESS DR. ANGANA* 👑
-⚜ Proclaimed unto the Stars & Sealed with Royal Command ⚜
-
-✨ *Her Majesty's Secret Birthday Wish:*
-"${data.wish}"
-
-💌 *Her Royal Command for Ayush:*
-"${data.command}"
-
-🎉 *Her Dream Birthday Celebration:*
-${data.celebration}
-
-💖 *Her Royal Mood:*
-${data.mood}
-
-📅 *Inscribed:* ${data.date}
-✦ Forever Sealed in Ayush's Heart ✦`;
-
-      waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(waMessage)}`;
+      waBtn.href = this.buildWhatsAppUrl(data);
       waBtn.target = '_blank';
     }
 
@@ -277,3 +329,10 @@ ${data.mood}
     }
   }
 };
+
+// Auto-initialize when script loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => RoyalWishes.init());
+} else {
+  RoyalWishes.init();
+}

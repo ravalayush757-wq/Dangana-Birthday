@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A Royal Birthday Tribute — A Majestic Celebration of the Most Precious Soul">
-  <title>👑 A Royal Birthday Decree — For Her Majesty D. Angana</title>
+  <title>A Royal Birthday Decree — For Her Majesty D. Angana</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+  <link rel="icon" type="image/png" href="fevicon.png?v=2">
+  <link rel="shortcut icon" href="favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="fevicon.png?v=2">
 </head>
 <body>
 
@@ -15,7 +17,7 @@
        ========================================== -->
   <nav class="royal-nav" id="royal-nav">
     <div class="nav-container">
-      <a class="nav-brand" data-page="landing">👑 Her Royal Highness <span class="royal-name-script">D. Angana</span></a>
+      <a class="nav-brand" data-page="landing"><span class="royal-name-script">D. Angana</span></a>
       <ul class="nav-links" id="nav-links">
         <li><a data-page="landing" class="active">The Grand Hall</a></li>
         <li><a data-page="decree">The Decree</a></li>
@@ -139,13 +141,13 @@
                 placeholder="Whisper thy secret wish for this year... (joy, peace, dreams, accomplishments, or anything thy heart craves)"></textarea>
             </div>
 
-            <!-- Command for Ayush -->
+            <!-- Command for Manu -->
             <div class="form-group">
               <label for="her-royal-command" class="royal-label">
-                💌 A Royal Command or Promise Decreed for Ayush
+                💌 A Royal Command or Promise Decreed for Manu
               </label>
               <textarea id="her-royal-command" class="royal-textarea" rows="2"
-                placeholder="What dost thou command Ayush to do, promise, or fulfill for thee? (e.g. 'Never stop pampering me', 'Take me on a midnight trip to...')"></textarea>
+                placeholder="What dost thou command Manu to do, promise, or fulfill for thee? (e.g. 'Never stop pampering me', 'Take me on a midnight trip to...')"></textarea>
             </div>
 
             <!-- Dream Celebration Selector -->
@@ -153,12 +155,12 @@
               <label class="royal-label">
                 🎉 Thy Chosen Royal Birthday Celebration
               </label>
-              <div class="pills-grid">
-                <button type="button" class="celeb-pill selected" data-celeb="A Candlelight Royal Feast 🕯️">🕯️ Candlelight Royal Feast</button>
-                <button type="button" class="celeb-pill" data-celeb="Stargazing & Midnight Conversations 🌌">🌌 Stargazing & Sweet Talks</button>
-                <button type="button" class="celeb-pill" data-celeb="A Surprise Royal Getaway ✈️">✈️ A Surprise Getaway</button>
-                <button type="button" class="celeb-pill" data-celeb="Gourmet Cakes & Lavish Pampering 🍰">🍰 Cakes & Lavish Pampering</button>
-                <button type="button" class="celeb-pill" data-celeb="Endless Hugs & Quiet Togetherness 💖">💖 Endless Hugs & Warmth</button>
+              <div class="pills-grid" id="celeb-pills-container">
+                <button type="button" class="celeb-pill selected" onclick="RoyalWishes.selectCeleb(this)" data-celeb="A Candlelight Royal Feast 🕯️">🕯️ Candlelight Royal Feast</button>
+                <button type="button" class="celeb-pill" onclick="RoyalWishes.selectCeleb(this)" data-celeb="Stargazing & Midnight Conversations 🌌">🌌 Stargazing & Sweet Talks</button>
+                <button type="button" class="celeb-pill" onclick="RoyalWishes.selectCeleb(this)" data-celeb="A Surprise Royal Getaway ✈️">✈️ A Surprise Getaway</button>
+                <button type="button" class="celeb-pill" onclick="RoyalWishes.selectCeleb(this)" data-celeb="Gourmet Cakes & Lavish Pampering 🍰">🍰 Cakes & Lavish Pampering</button>
+                <button type="button" class="celeb-pill" onclick="RoyalWishes.selectCeleb(this)" data-celeb="Endless Hugs & Quiet Togetherness 💖">💖 Endless Hugs & Warmth</button>
               </div>
               <input type="hidden" id="selected-royal-celeb" value="A Candlelight Royal Feast 🕯️">
             </div>
@@ -168,11 +170,11 @@
               <label class="royal-label">
                 👸 Her Majesty's Imperial Mood Today
               </label>
-              <div class="mood-pills-row">
-                <button type="button" class="mood-pill selected" data-mood="Majestic & Blessed 👑">👑 Majestic</button>
-                <button type="button" class="mood-pill" data-mood="Deeply Loved & Cherished 💖">💖 Cherished</button>
-                <button type="button" class="mood-pill" data-mood="Radiant & Smiling 🌸">🌸 Radiant</button>
-                <button type="button" class="mood-pill" data-mood="Eager & Excited ✨">✨ Excited</button>
+              <div class="mood-pills-row" id="mood-pills-container">
+                <button type="button" class="mood-pill selected" onclick="RoyalWishes.selectMood(this)" data-mood="Majestic & Blessed 👑">👑 Majestic</button>
+                <button type="button" class="mood-pill" onclick="RoyalWishes.selectMood(this)" data-mood="Deeply Loved & Cherished 💖">💖 Cherished</button>
+                <button type="button" class="mood-pill" onclick="RoyalWishes.selectMood(this)" data-mood="Radiant & Smiling 🌸">🌸 Radiant</button>
+                <button type="button" class="mood-pill" onclick="RoyalWishes.selectMood(this)" data-mood="Eager & Excited ✨">✨ Excited</button>
               </div>
               <input type="hidden" id="selected-royal-mood" value="Majestic & Blessed 👑">
             </div>
@@ -180,7 +182,7 @@
             <!-- Submit Button -->
             <div class="form-submit-row">
               <button type="submit" class="royal-btn royal-btn-gold">
-                ⚜ Seal & Inscribe My Royal Wish with Gold ⚜
+                ⚜ Seal & Send Royal Wish to Manu (WhatsApp) ⚜
               </button>
             </div>
           </form>
@@ -192,7 +194,7 @@
           <div class="cert-crown">👑</div>
           <h2 class="cert-title">By Royal Order of Princess <span class="royal-name-script">D. Angana</span></h2>
           <p class="cert-proclamation">
-            Be it recorded in the archives of Heaven and upon the steadfast heart of Ayush:
+            Be it recorded in the archives of Heaven and upon the steadfast heart of Manu:
           </p>
 
           <div class="cert-divider">✦ ✦ ✦</div>
@@ -203,7 +205,7 @@
           </div>
 
           <div class="cert-item">
-            <span class="cert-label">Her Royal Command Unto Ayush:</span>
+            <span class="cert-label">Her Royal Command Unto Manu:</span>
             <p class="cert-command" id="cert-command-text">""</p>
           </div>
 
@@ -229,8 +231,8 @@
 
           <!-- Actions -->
           <div class="cert-actions">
-            <a id="cert-whatsapp-btn" href="#" class="royal-btn whatsapp-share-btn">
-              💬 Share Royal Decree with Ayush
+            <a id="cert-whatsapp-btn" href="#" class="royal-btn whatsapp-share-btn" target="_blank">
+              💬 Send Royal Decree to Manu on WhatsApp (+91 9065405089)
             </a>
             <button id="cert-edit-btn" class="royal-btn-ghost">
               ✍ Inscribe Another Wish
@@ -257,7 +259,7 @@
             "Among the countless billions who walk this earth, there is only one smile that turns my world to pure gold..."
           </p>
           <div class="quote-mark-bottom">❞</div>
-          <p class="quote-sub-dedication" id="royal-quote-sub">✦ Dedicated from the Faithful Heart of Ayush ✦</p>
+          <p class="quote-sub-dedication" id="royal-quote-sub">✦ Dedicated from the Faithful Heart of Manu ✦</p>
         </div>
 
         <div class="quote-controls">
@@ -763,6 +765,11 @@
       <div class="wish-section">
         <button class="wish-btn" id="wish-btn">🌟 Make a Wish 🌟</button>
         <p class="wish-text">Close thine eyes, whisper thy heart's desire, and release it unto the heavens...</p>
+        <a href="https://api.whatsapp.com/send?phone=919065405089&text=%F0%9F%91%91%20My%20dearest%20Manu%2C%20I%20just%20made%20a%20secret%20birthday%20wish%20under%20the%20stars...%20%E2%9C%A8%F0%9F%92%96" 
+           target="_blank" 
+           class="blessing-whatsapp-link">
+          💬 Whisper Thy Heart's Wish to Manu on WhatsApp (+91 9065405089)
+        </a>
       </div>
 
       <!-- Closing Seal -->
